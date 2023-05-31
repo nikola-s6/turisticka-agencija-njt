@@ -58,4 +58,9 @@ public class Coordinator {
         RezervacijeController rc = new RezervacijeController(new FrmRezervacije(mainController.getFrmMain(), true));
         rc.openForm(FormMode.FORM_ADD);
     }
+
+    public void openPretragaRezervacija(){
+        RezervacijeController rc = new RezervacijeController(new FrmRezervacije(mainController.getFrmMain(), true));
+        rc.openForm(FormMode.FORM_SEARCH);
+    }
 }

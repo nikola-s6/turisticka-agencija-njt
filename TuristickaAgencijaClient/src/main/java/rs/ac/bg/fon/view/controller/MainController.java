@@ -89,12 +89,12 @@ public class MainController {
             }
         });
 
-//        form.getMiPretrazivanjeRezervacije().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Coordinator.getInstance().openPretragaRezervacija();
-//            }
-//        });
+        form.getMiPretrazivanjeRezervacije().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Coordinator.getInstance().openPretragaRezervacija();
+            }
+        });
     }
 
     private void hideElements() {
