@@ -1,13 +1,7 @@
 package rs.ac.bg.fon.view.coordinator;
 
-import rs.ac.bg.fon.view.controller.LoginController;
-import rs.ac.bg.fon.view.controller.MainController;
-import rs.ac.bg.fon.view.controller.PretragaPutnikaController;
-import rs.ac.bg.fon.view.controller.PrikazPutnikaController;
-import rs.ac.bg.fon.view.form.FrmLogin;
-import rs.ac.bg.fon.view.form.FrmMain;
-import rs.ac.bg.fon.view.form.FrmPretragaPutnika;
-import rs.ac.bg.fon.view.form.FrmPrikazPutnika;
+import rs.ac.bg.fon.view.controller.*;
+import rs.ac.bg.fon.view.form.*;
 import rs.ac.bg.fon.view.form.util.FormMode;
 
 public class Coordinator {
@@ -48,5 +42,15 @@ public class Coordinator {
     public void openPrikazPutnika() {
         PrikazPutnikaController pp = new PrikazPutnikaController(new FrmPrikazPutnika(mainController.getFrmMain(), true));
         pp.openForm(FormMode.FORM_SEARCH);
+    }
+
+    public void openKreiranjePutovanja(){
+        KreiranjePutovanjaController kp = new KreiranjePutovanjaController(new FrmKreiranjePutovanja(mainController.getFrmMain(), true));
+        kp.openForm();
+    }
+
+    public void openPretrazivanjePutovanja(){
+        PutovanjeController pk = new PutovanjeController(new FrmPutovanje(mainController.getFrmMain(), true));
+        pk.openForm();
     }
 }

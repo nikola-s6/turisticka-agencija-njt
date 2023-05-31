@@ -68,20 +68,20 @@ public class MainController {
             }
         });
 
-//        form.getMiKreiranjePutovanja().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Coordinator.getInstance().openKreiranjePutovanja();
-//            }
-//        });
-//
-//        form.getMiPretrazivanjePutovanja().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Coordinator.getInstance().openPretrazivanjePutovanja();
-//            }
-//        });
-//
+        form.getMiKreiranjePutovanja().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Coordinator.getInstance().openKreiranjePutovanja();
+            }
+        });
+
+        form.getMiPretrazivanjePutovanja().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Coordinator.getInstance().openPretrazivanjePutovanja();
+            }
+        });
+
 //        form.getMiKreiranjeRezervacije().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
