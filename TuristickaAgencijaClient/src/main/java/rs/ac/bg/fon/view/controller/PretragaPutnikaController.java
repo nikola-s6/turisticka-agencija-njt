@@ -46,8 +46,7 @@ public class PretragaPutnikaController {
                 if (row >= 0) {
                     Putnik putnik = ((PretragaPutnikaTableModel) form.getTbPutnici().getModel()).getPutnik(row);
                     GlobalniPodaci.getInstance().add(TipoviPodataka.PRIKAZ_PUTNIKA, putnik);
-//                    TODO: odkomentarisati ovo
-//                    Coordinator.getInstance().openPrikazPutnika();
+                    Coordinator.getInstance().openPrikazPutnika();
                     ((PretragaPutnikaTableModel) form.getTbPutnici().getModel()).fireTableDataChanged();
                 }
             }

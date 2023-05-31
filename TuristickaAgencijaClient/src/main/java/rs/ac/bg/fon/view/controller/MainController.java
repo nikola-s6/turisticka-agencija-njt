@@ -33,41 +33,41 @@ public class MainController {
     }
 
     private void addActionListener() {
-//        form.getMiKreiranjePutnika().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Coordinator.getInstance().openKreiranjePutnika();
-//            }
-//        });
-//
-//        form.getMiPretrazivanjePutnika().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Coordinator.getInstance().openPretrazivanjePutnika();
-//            }
-//        });
-//
-//        form.getMiPodaci().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Coordinator.getInstance().openPrikazPutnika();
-//            }
-//        });
-//
-//        form.getMiLogout().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                GlobalniPodaci.getInstance().reset();
-//                try {
-//                    Communication.getInstance().logout();
-//                    Coordinator.getInstance().openLoginForm();
-//                    form.dispose();
-//                } catch (Exception ex) {
-//                    JOptionPane.showMessageDialog(form, "Neuspesna odjava sa sistema", "Greska odjave", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-//        });
-//
+        form.getMiKreiranjePutnika().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Coordinator.getInstance().openKreiranjePutnika();
+            }
+        });
+
+        form.getMiPretrazivanjePutnika().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Coordinator.getInstance().openPretrazivanjePutnika();
+            }
+        });
+
+        form.getMiPodaci().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Coordinator.getInstance().openPrikazPutnika();
+            }
+        });
+
+        form.getMiLogout().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GlobalniPodaci.getInstance().reset();
+                try {
+                    Communication.getInstance().logout();
+                    Coordinator.getInstance().openLoginForm();
+                    form.dispose();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(form, "Neuspesna odjava sa sistema", "Greska odjave", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
 //        form.getMiKreiranjePutovanja().addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
