@@ -24,7 +24,7 @@ public class DbConnectionFactory {
         if (connection == null || connection.isClosed()) {
             Properties properties = new Properties();
 //            properties.load(new FileInputStream("config/dbconfig.properties"));
-            properties.load(getClass().getResourceAsStream("/resources/config/dbconfig.properties"));
+            properties.load(getClass().getResourceAsStream("/config/dbconfig.properties"));
             String url = properties.getProperty("url");
             String username = properties.getProperty("username");
             String password = properties.getProperty("password");
