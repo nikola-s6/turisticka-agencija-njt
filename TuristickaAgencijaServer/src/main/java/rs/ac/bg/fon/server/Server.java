@@ -1,5 +1,7 @@
 package rs.ac.bg.fon.server;
 
+import rs.ac.bg.fon.thread.ClientHandler;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -19,8 +21,7 @@ public class Server extends Thread {
             while (!isInterrupted()) {
                 System.out.println("Cekanje na konekciju");
                 Socket socket = serverSocket.accept();
-//                TODO: izbrisati komentar
-//                handleClient(socket);
+                handleClient(socket);
             }
         } catch (IOException e) {
 //            e.printStackTrace();
@@ -35,11 +36,10 @@ public class Server extends Thread {
         this.serverSocket = serverSocket;
     }
 
-    //TODO: izbrisati komentar
-//    private void handleClient(Socket socket) {
-//        ClientHandler clientHandler = new ClientHandler(socket);
-//        clientHandler.start();
-//    }
+    private void handleClient(Socket socket) {
+        ClientHandler clientHandler = new ClientHandler(socket);
+        clientHandler.start();
+    }
 
 }
 
