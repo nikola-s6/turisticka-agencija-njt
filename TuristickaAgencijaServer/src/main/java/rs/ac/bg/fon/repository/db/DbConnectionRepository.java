@@ -1,5 +1,7 @@
 package rs.ac.bg.fon.repository.db;
 
+import rs.ac.bg.fon.repository.Repository;
+
 public interface DbConnectionRepository<T> extends Repository<T> {
 
     default public void connect() throws Exception {
