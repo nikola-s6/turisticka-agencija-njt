@@ -43,7 +43,7 @@ public class FrmMain extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Turisticka agencija");
 
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/plane.jpg"))); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plane.jpg"))); // NOI18N
         image.setText("jLabel1");
 
         mmPutnik.setText("Putnik");
