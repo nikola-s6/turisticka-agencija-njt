@@ -1,5 +1,7 @@
 package rs.ac.bg.fon.thread;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import rs.ac.bg.fon.communication.Receiver;
 import rs.ac.bg.fon.communication.Request;
 import rs.ac.bg.fon.communication.Response;
@@ -17,11 +19,13 @@ public class ClientHandler extends Thread {
     private Sender sender;
     private Receiver receiver;
     private Putnik ulogovaniKlijent;
+    private Gson gson;
 
     public ClientHandler(Socket socket) {
         this.socket = socket;
         sender = new Sender(socket);
         receiver = new Receiver(socket);
+        this.gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
     @Override
@@ -112,6 +116,7 @@ public class ClientHandler extends Thread {
 //                    System.out.println(e.getMessage());
                     response.setException(e);
                 }
+                System.out.println(gson.toJson(response.getResult()));
                 sender.send(response);
             } catch (Exception ex) {
                 System.out.println("diskonektovan");
