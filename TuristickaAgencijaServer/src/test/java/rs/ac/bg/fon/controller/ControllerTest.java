@@ -6,6 +6,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import rs.ac.bg.fon.domain.*;
 import rs.ac.bg.fon.domain.util.Pol;
+import rs.ac.bg.fon.domain.util.Ponuda;
+import rs.ac.bg.fon.domain.util.Prevoz;
+import rs.ac.bg.fon.domain.util.Smestaj;
+
+import java.util.List;
 
 
 class ControllerTest {
@@ -29,12 +34,13 @@ class ControllerTest {
         Putnik dbPutnik = controller.ucitajPutnika(sacuvan);
 
         assertTrue(dbPutnik.getPutnikID() != 0);
-        assertEquals(p.getIme(), dbPutnik.getIme());
-        assertEquals(p.getPrezime(), dbPutnik.getPrezime());
-        assertEquals(p.getPol(), dbPutnik.getPol());
-        assertEquals(p.getEmail(), dbPutnik.getEmail());
-        assertEquals(p.getBrojTelefona(), dbPutnik.getBrojTelefona());
-        assertEquals(p.getSifra(), dbPutnik.getSifra());
+        assertEquals(sacuvan.getPutnikID(), dbPutnik.getPutnikID());
+        assertEquals(sacuvan.getIme(), dbPutnik.getIme());
+        assertEquals(sacuvan.getPrezime(), dbPutnik.getPrezime());
+        assertEquals(sacuvan.getPol(), dbPutnik.getPol());
+        assertEquals(sacuvan.getEmail(), dbPutnik.getEmail());
+        assertEquals(sacuvan.getBrojTelefona(), dbPutnik.getBrojTelefona());
+        assertEquals(sacuvan.getSifra(), dbPutnik.getSifra());
 
         controller.obrisiPutnika(dbPutnik);
     }
@@ -91,6 +97,124 @@ class ControllerTest {
         controller.obrisiPutnika(dbPutnik);
     }
 
+    @Test
+    void ucitajPutnika() throws Exception {
+        Putnik p = new Putnik();
+        p.setIme("Nikola");
+        p.setPrezime("Stojilkovic");
+        p.setPol(Pol.MUSKI);
+        p.setEmail("nikola.stojilkovic6@gmail.com");
+        p.setBrojTelefona("0601111111");
+        p.setSifra("nikola123");
+        Putnik sacuvan = controller.zapamtiPutnika(p);
 
+        Putnik dbPutnik = controller.ucitajPutnika(sacuvan);
+
+        assertTrue(dbPutnik.getPutnikID() != 0);
+        assertEquals(sacuvan.getPutnikID(), dbPutnik.getPutnikID());
+        assertEquals(sacuvan.getIme(), dbPutnik.getIme());
+        assertEquals(sacuvan.getPrezime(), dbPutnik.getPrezime());
+        assertEquals(sacuvan.getPol(), dbPutnik.getPol());
+        assertEquals(sacuvan.getEmail(), dbPutnik.getEmail());
+        assertEquals(sacuvan.getBrojTelefona(), dbPutnik.getBrojTelefona());
+        assertEquals(sacuvan.getSifra(), dbPutnik.getSifra());
+
+        controller.obrisiPutnika(dbPutnik);
+    }
+
+    @Test
+    void obrisiPutnika() throws Exception {
+        Putnik p = new Putnik();
+        p.setIme("Nikola");
+        p.setPrezime("Stojilkovic");
+        p.setPol(Pol.MUSKI);
+        p.setEmail("nikola.stojilkovic6@gmail.com");
+        p.setBrojTelefona("0601111111");
+        p.setSifra("nikola123");
+        Putnik sacuvan = controller.zapamtiPutnika(p);
+
+        controller.obrisiPutnika(sacuvan);
+
+        List<Putnik> putnici = controller.pronadjiPutnike(sacuvan);
+        assertEquals(0, putnici.size());
+    }
+
+    @Test
+    void zapamtiPutovanjeKreiranje() throws Exception {
+        Grad g1 = new Grad();
+        g1.setGradID(28);
+        Grad g2 = new Grad();
+        g2.setGradID(29);
+        Putovanje p = new Putovanje();
+        p.setPocetniGrad(g1);
+        p.setKrajnjiGrad(g2);
+        p.setPrevoz(Prevoz.AVION);
+        p.setSmestaj(Smestaj.HOTEL);
+        p.setPonuda(Ponuda.POLU_PANSION);
+        p.setKratakOpis("Opis putovanja");
+        p.setNaziv("Obilazak Rima");
+
+        Putovanje zapamceno = controller.zapamtiPutovanje(p);
+
+        Putovanje dbPutovanje = controller.ucitajPutovanje(zapamceno);
+
+        assertTrue(dbPutovanje.getPutovanjeID() != 0);
+        assertEquals(zapamceno.getPutovanjeID(), dbPutovanje.getPutovanjeID());
+        assertEquals(zapamceno.getPocetniGrad().getGradID(), dbPutovanje.getPocetniGrad().getGradID());
+        assertEquals(zapamceno.getKrajnjiGrad().getGradID(), dbPutovanje.getKrajnjiGrad().getGradID());
+        assertEquals(zapamceno.getPrevoz(), dbPutovanje.getPrevoz());
+        assertEquals(zapamceno.getSmestaj(), dbPutovanje.getSmestaj());
+        assertEquals(zapamceno.getPonuda(), dbPutovanje.getPonuda());
+        assertEquals(zapamceno.getKratakOpis(), dbPutovanje.getKratakOpis());
+        assertEquals(zapamceno.getNaziv(), dbPutovanje.getNaziv());
+    }
+
+    @Test
+    void zapamtiPutovanjeIzmena() throws Exception {
+        Grad g1 = new Grad();
+        g1.setGradID(28);
+        Grad g2 = new Grad();
+        g2.setGradID(29);
+        Putovanje p = new Putovanje();
+        p.setPocetniGrad(g1);
+        p.setKrajnjiGrad(g2);
+        p.setPrevoz(Prevoz.AVION);
+        p.setSmestaj(Smestaj.HOTEL);
+        p.setPonuda(Ponuda.POLU_PANSION);
+        p.setKratakOpis("Opis putovanja");
+        p.setNaziv("Obilazak Rima");
+
+        Putovanje pers = controller.zapamtiPutovanje(p);
+
+        Putovanje zaIzmenu = controller.ucitajPutovanje(pers);
+        zaIzmenu.setPrevoz(Prevoz.AUTOBUS);
+        zaIzmenu.setSmestaj(Smestaj.APARTMAN);
+        zaIzmenu.setPonuda(Ponuda.BEZ_PANSIONA);
+        zaIzmenu.setKratakOpis("Izmenjen obilazak Rima");
+
+        Putovanje zapamceno = controller.zapamtiPutovanje(zaIzmenu);
+
+        Putovanje dbPutovanje = controller.ucitajPutovanje(zapamceno);
+
+        assertTrue(dbPutovanje.getPutovanjeID() != 0);
+        assertEquals(zapamceno.getPutovanjeID(), dbPutovanje.getPutovanjeID());
+        assertEquals(zapamceno.getPocetniGrad().getGradID(), dbPutovanje.getPocetniGrad().getGradID());
+        assertEquals(zapamceno.getKrajnjiGrad().getGradID(), dbPutovanje.getKrajnjiGrad().getGradID());
+        assertEquals(zapamceno.getPrevoz(), dbPutovanje.getPrevoz());
+        assertEquals(zapamceno.getSmestaj(), dbPutovanje.getSmestaj());
+        assertEquals(zapamceno.getPonuda(), dbPutovanje.getPonuda());
+        assertEquals(zapamceno.getKratakOpis(), dbPutovanje.getKratakOpis());
+        assertEquals(zapamceno.getNaziv(), dbPutovanje.getNaziv());
+    }
+
+    @Test
+    void pronadjiPutovanje(){
+
+    }
+
+    @Test
+    void ucitajPutovanje(){
+
+    }
 
 }

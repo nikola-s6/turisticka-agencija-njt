@@ -66,13 +66,13 @@ public class Controller {
                 repositoryPutnik.add(putnik);
             }
             ((DbConnectionRepository) repositoryPutnik).commit();
-            return putnik;
         } catch (Exception ex) {
             ((DbConnectionRepository) repositoryPutnik).rollback();
             throw ex;
         } finally {
             ((DbConnectionRepository) repositoryPutnik).disconnect();
         }
+        return putnik;
     }
 
     public List<Putnik> pronadjiPutnike(Putnik putnik) throws Exception {
@@ -179,7 +179,7 @@ public class Controller {
         return p;
     }
 
-    public void zapamtiPutovanje(Putovanje putovanje) throws Exception {
+    public Putovanje zapamtiPutovanje(Putovanje putovanje) throws Exception {
         try {
             ((DbConnectionRepository) repositoryPutovanje).connect();
             if (putovanje.getPutovanjeID() == 0) {
@@ -218,6 +218,7 @@ public class Controller {
         } finally {
             ((DbConnectionRepository) repositoryPutovanje).disconnect();
         }
+        return putovanje;
     }
 
     public List<Putovanje> ucitajPutovanjaPutnika(Putnik putnik) throws Exception {
