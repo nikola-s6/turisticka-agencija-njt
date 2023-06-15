@@ -56,15 +56,17 @@ public class Controller {
         throw new Exception("Nepoznat korisnik!");
     }
 
-    public void zapamtiPutnika(Putnik putnik) throws Exception {
+    public Putnik zapamtiPutnika(Putnik putnik) throws Exception {
         try {
             ((DbConnectionRepository) repositoryPutnik).connect();
             if (putnik.getPutnikID() != 0) {
                 repositoryPutnik.edit(putnik);
             } else {
+                putnik.setSifra(Integer.toString(putnik.getSifra().hashCode()));
                 repositoryPutnik.add(putnik);
             }
             ((DbConnectionRepository) repositoryPutnik).commit();
+            return putnik;
         } catch (Exception ex) {
             ((DbConnectionRepository) repositoryPutnik).rollback();
             throw ex;
