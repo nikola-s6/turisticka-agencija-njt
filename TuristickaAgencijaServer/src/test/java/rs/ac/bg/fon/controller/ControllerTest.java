@@ -208,8 +208,20 @@ class ControllerTest {
     }
 
     @Test
-    void pronadjiPutovanje(){
+    void pronadjiPutovanjaException() throws Exception {
+        assertThrows(Exception.class, () -> controller.pronadjiPutovanja(null));
+        Grad grad = new Grad();
+        assertThrows(Exception.class, () -> controller.pronadjiPutovanja(grad));
+    }
 
+    @Test
+    void pronadjiPutovanja() throws Exception {
+        Grad grad = new Grad();
+        grad.setGradID(29);
+        grad.setNaziv("Rim");
+        grad.setDrzava("Italija");
+        List<Putovanje> putovanja = controller.pronadjiPutovanja(grad);
+        assertTrue(putovanja.size() > 0);
     }
 
     @Test

@@ -128,6 +128,9 @@ public class Controller {
         if (grad == null) {
             throw new Exception("Za pretragu putoavnja potrebno je uneti grad");
         }
+        if(grad.getGradID() == 0){
+            throw new Exception("Za pretragu putoavnja potrebno je uneti grad koji ima gradID");
+        }
         List<Putovanje> putovanja = new ArrayList<>();
 
         try {
