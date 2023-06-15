@@ -225,8 +225,39 @@ class ControllerTest {
     }
 
     @Test
-    void ucitajPutovanje(){
+    void ucitajPutovanjeException(){
+        Putovanje putovanje = new Putovanje();
+        assertThrows(Exception.class, ()-> controller.ucitajPutovanje(putovanje));
+    }
 
+    @Test
+    void ucitajPutovanje() throws Exception {
+        Grad g1 = new Grad();
+        g1.setGradID(28);
+        Grad g2 = new Grad();
+        g2.setGradID(29);
+        Putovanje p = new Putovanje();
+        p.setPocetniGrad(g1);
+        p.setKrajnjiGrad(g2);
+        p.setPrevoz(Prevoz.AVION);
+        p.setSmestaj(Smestaj.HOTEL);
+        p.setPonuda(Ponuda.POLU_PANSION);
+        p.setKratakOpis("Opis putovanja");
+        p.setNaziv("Obilazak Rima");
+
+        Putovanje zapamceno = controller.zapamtiPutovanje(p);
+
+        Putovanje dbPutovanje = controller.ucitajPutovanje(zapamceno);
+
+        assertTrue(dbPutovanje.getPutovanjeID() != 0);
+        assertEquals(zapamceno.getPutovanjeID(), dbPutovanje.getPutovanjeID());
+        assertEquals(zapamceno.getPocetniGrad().getGradID(), dbPutovanje.getPocetniGrad().getGradID());
+        assertEquals(zapamceno.getKrajnjiGrad().getGradID(), dbPutovanje.getKrajnjiGrad().getGradID());
+        assertEquals(zapamceno.getPrevoz(), dbPutovanje.getPrevoz());
+        assertEquals(zapamceno.getSmestaj(), dbPutovanje.getSmestaj());
+        assertEquals(zapamceno.getPonuda(), dbPutovanje.getPonuda());
+        assertEquals(zapamceno.getKratakOpis(), dbPutovanje.getKratakOpis());
+        assertEquals(zapamceno.getNaziv(), dbPutovanje.getNaziv());
     }
 
 }
