@@ -23,9 +23,9 @@ public class DbConnectionFactory {
     public Connection getConnection() throws Exception {
         if (connection == null || connection.isClosed()) {
             Properties properties = new Properties();
-//            properties.load(new FileInputStream("config/dbconfig.properties"));
             properties.load(getClass().getResourceAsStream("/config/dbconfig.properties"));
-            String url = properties.getProperty("url");
+            String mode = properties.getProperty("mode");
+            String url = properties.getProperty(mode + "_url");
             String username = properties.getProperty("username");
             String password = properties.getProperty("password");
             connection = DriverManager.getConnection(url, username, password);

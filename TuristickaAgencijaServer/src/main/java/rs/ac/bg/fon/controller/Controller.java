@@ -136,12 +136,13 @@ public class Controller {
      * @param putnik Objekat domenske klase Putnik koji je potrebno sacuvati ili izmeniti.
      * @throws Exception ukoliko dodje do greske prilikom cuvanja ili izmene podataka putnika u bazi podataka.
      */
-    public void zapamtiPutnika(Putnik putnik) throws Exception {
+    public Putnik zapamtiPutnika(Putnik putnik) throws Exception {
         try {
             ((DbConnectionRepository) repositoryPutnik).connect();
             if (putnik.getPutnikID() != 0) {
                 repositoryPutnik.edit(putnik);
             } else {
+                putnik.setSifra(Integer.toString(putnik.getSifra().hashCode()));
                 repositoryPutnik.add(putnik);
             }
             ((DbConnectionRepository) repositoryPutnik).commit();
@@ -151,6 +152,7 @@ public class Controller {
         } finally {
             ((DbConnectionRepository) repositoryPutnik).disconnect();
         }
+        return putnik;
     }
 
     /**
@@ -240,6 +242,9 @@ public class Controller {
         if (grad == null) {
             throw new Exception("Za pretragu putoavnja potrebno je uneti grad");
         }
+        if(grad.getGradID() == 0 || grad.getNaziv() == null){
+            throw new Exception("Za pretragu putoavnja potrebno je uneti grad informacije o gradu");
+        }
         List<Putovanje> putovanja = new ArrayList<>();
 
         try {
@@ -309,7 +314,7 @@ public class Controller {
      * @param putovanje objekat domenske klase Putovanje koji je potrebno sacuvati ili izemniti.
      * @throws Exception ukoliko dodje do greske u bazi podataka prilikom izmene ili cuvanja podataka putovanja.
      */
-    public void zapamtiPutovanje(Putovanje putovanje) throws Exception {
+    public Putovanje zapamtiPutovanje(Putovanje putovanje) throws Exception {
         try {
             ((DbConnectionRepository) repositoryPutovanje).connect();
             if (putovanje.getPutovanjeID() == 0) {
@@ -348,6 +353,7 @@ public class Controller {
         } finally {
             ((DbConnectionRepository) repositoryPutovanje).disconnect();
         }
+        return putovanje;
     }
 
     /**
@@ -361,6 +367,9 @@ public class Controller {
     public List<Putovanje> ucitajPutovanjaPutnika(Putnik putnik) throws Exception {
         if (putnik == null) {
             throw new Exception("Za pretragu putovanja potrebno je uneti putnika");
+        }
+        if(putnik.getPutnikID() == 0){
+            throw new Exception("Za pretragu putoavnja potrebno je uneti postojeceg putnika");
         }
         List<Putovanje> putovanja = new ArrayList<>();
 
@@ -468,9 +477,12 @@ public class Controller {
      * @throws Exception ukoliko je status rezervacije null, ukoliko je status vec postavljen na neaktivan ili ukoiko dodje do
      * greske prilikom izmena statusa rezervacije u bazi podataka.
      */
-    public void stornirajRezervaciju(Rezervacija rezervacija) throws Exception {
+    public Rezervacija stornirajRezervaciju(Rezervacija rezervacija) throws Exception {
         if (rezervacija.getStatus() == null) {
             throw new Exception("Rezervacija mora imati status");
+        }
+        if(rezervacija.getBrojRezervacije() == 0){
+            throw new Exception("Rezervacija mora imati broj");
         }
         if (rezervacija.getStatus().equals(StatusRezervacije.NEAKTIVAN)) {
             throw new Exception("Rezervaciju je moguce stornirati samo ako je aktivna!");
@@ -487,6 +499,7 @@ public class Controller {
         } finally {
             ((DbConnectionRepository) repositoryRezervacija).disconnect();
         }
+        return rezervacija;
     }
 
     /**
@@ -495,9 +508,12 @@ public class Controller {
      * @throws Exception ukoliko je status rezervacije null, ukoliko je status vec postavljen na aktivan ili ukoiko dodje do
      * greske prilikom izmene statusa rezervacije u bazi podataka.
      */
-    public void obradiRezervaciju(Rezervacija rezervacija) throws Exception {
+    public Rezervacija obradiRezervaciju(Rezervacija rezervacija) throws Exception {
         if (rezervacija.getStatus() == null) {
             throw new Exception("Rezervacija mora imati status");
+        }
+        if(rezervacija.getBrojRezervacije() == 0){
+            throw new Exception("Rezervacija mora imati broj");
         }
         if (rezervacija.getStatus().equals(StatusRezervacije.AKTIVAN)) {
             throw new Exception("Rezervaciju je moguce obraditi samo kada nije aktivna!");
@@ -514,6 +530,7 @@ public class Controller {
         } finally {
             ((DbConnectionRepository) repositoryRezervacija).disconnect();
         }
+        return rezervacija;
     }
 
     /**

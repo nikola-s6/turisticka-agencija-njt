@@ -89,7 +89,7 @@ public class RepositoryDBPutnik implements DbConnectionRepository<Putnik> {
             ps.setString(3, putnik.getPol().toString().toLowerCase());
             ps.setString(4, putnik.getEmail());
             ps.setString(5, putnik.getBrojTelefona());
-            ps.setString(6, Integer.toString(putnik.getSifra().hashCode()));
+            ps.setString(6, putnik.getSifra());
 
             ps.executeUpdate();
             ResultSet rsKeys = ps.getGeneratedKeys();
