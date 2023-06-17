@@ -298,9 +298,12 @@ public class Controller {
         return rezervacije;
     }
 
-    public void stornirajRezervaciju(Rezervacija rezervacija) throws Exception {
+    public Rezervacija stornirajRezervaciju(Rezervacija rezervacija) throws Exception {
         if (rezervacija.getStatus() == null) {
             throw new Exception("Rezervacija mora imati status");
+        }
+        if(rezervacija.getBrojRezervacije() == 0){
+            throw new Exception("Rezervacija mora imati broj");
         }
         if (rezervacija.getStatus().equals(StatusRezervacije.NEAKTIVAN)) {
             throw new Exception("Rezervaciju je moguce stornirati samo ako je aktivna!");
@@ -317,11 +320,15 @@ public class Controller {
         } finally {
             ((DbConnectionRepository) repositoryRezervacija).disconnect();
         }
+        return rezervacija;
     }
 
-    public void obradiRezervaciju(Rezervacija rezervacija) throws Exception {
+    public Rezervacija obradiRezervaciju(Rezervacija rezervacija) throws Exception {
         if (rezervacija.getStatus() == null) {
             throw new Exception("Rezervacija mora imati status");
+        }
+        if(rezervacija.getBrojRezervacije() == 0){
+            throw new Exception("Rezervacija mora imati broj");
         }
         if (rezervacija.getStatus().equals(StatusRezervacije.AKTIVAN)) {
             throw new Exception("Rezervaciju je moguce obraditi samo kada nije aktivna!");
@@ -338,6 +345,7 @@ public class Controller {
         } finally {
             ((DbConnectionRepository) repositoryRezervacija).disconnect();
         }
+        return rezervacija;
     }
 
     public List<Grad> ucitajListuGradova() throws Exception {

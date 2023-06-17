@@ -496,4 +496,245 @@ class ControllerTest {
 
         controller.obrisiPutnika(putnik);
     }
+
+    @Test
+    void stortnirajRezervacijuExceptionNull(){
+        assertThrows(Exception.class, () -> controller.stornirajRezervaciju(null));
+    }
+
+    @Test
+    void stortnirajRezervacijuExceptionBezBroja(){
+        assertThrows(Exception.class, () -> controller.stornirajRezervaciju(new Rezervacija()));
+    }
+
+    @Test
+    void stortnirajRezervacijuExceptionNeaktivna() throws Exception {
+        Putnik putnik = new Putnik();
+        putnik.setIme("Nikola");
+        putnik.setPrezime("Stojilkovic");
+        putnik.setPol(Pol.MUSKI);
+        putnik.setEmail("nikola.stojilkovic6@gmail.com");
+        putnik.setBrojTelefona("0601111111");
+        putnik.setSifra("nikola123");
+        putnik = controller.zapamtiPutnika(putnik);
+
+        Grad g1 = new Grad();
+        g1.setGradID(28);
+        Grad g2 = new Grad();
+        g2.setGradID(29);
+        Putovanje putovanje = new Putovanje();
+        putovanje.setPocetniGrad(g1);
+        putovanje.setKrajnjiGrad(g2);
+        putovanje.setPrevoz(Prevoz.AVION);
+        putovanje.setSmestaj(Smestaj.HOTEL);
+        putovanje.setPonuda(Ponuda.POLU_PANSION);
+        putovanje.setKratakOpis("Opis putovanja");
+        putovanje.setNaziv("Obilazak Rima");
+
+        putovanje = controller.zapamtiPutovanje(putovanje);
+
+        Termin termin = new Termin();
+        termin.setCena(12000.00);
+        termin.setDatumPolaska(new Date(2023, Calendar.OCTOBER, 13));
+        termin.setDatumPovratka(new Date(2023, Calendar.OCTOBER, 20));
+        termin.setPutovanje(putovanje);
+        putovanje.setTermini(List.of(termin));
+
+        putovanje = controller.zapamtiPutovanje(putovanje);
+        termin.setTerminID(putovanje.getTermini().get(putovanje.getTermini().size() - 1).getTerminID());
+
+
+        Rezervacija rezervacija = new Rezervacija();
+        rezervacija.setPutnik(putnik);
+        rezervacija.setPutovanje(putovanje);
+        rezervacija.setTermin(termin);
+        rezervacija.setStatus(StatusRezervacije.NEAKTIVAN);
+        termin.setRezervacije(List.of(rezervacija));
+        putnik.getRezervacije().add(rezervacija);
+
+        controller.zapamtiRezervaciju(rezervacija);
+        controller.zapamtiPutnika(putnik);
+
+        assertThrows(Exception.class, () -> controller.stornirajRezervaciju(rezervacija));
+
+        controller.obrisiPutnika(putnik);
+    }
+
+    @Test
+    void stortnirajRezervaciju() throws Exception {
+        Putnik putnik = new Putnik();
+        putnik.setIme("Nikola");
+        putnik.setPrezime("Stojilkovic");
+        putnik.setPol(Pol.MUSKI);
+        putnik.setEmail("nikola.stojilkovic6@gmail.com");
+        putnik.setBrojTelefona("0601111111");
+        putnik.setSifra("nikola123");
+        putnik = controller.zapamtiPutnika(putnik);
+
+        Grad g1 = new Grad();
+        g1.setGradID(28);
+        Grad g2 = new Grad();
+        g2.setGradID(29);
+        Putovanje putovanje = new Putovanje();
+        putovanje.setPocetniGrad(g1);
+        putovanje.setKrajnjiGrad(g2);
+        putovanje.setPrevoz(Prevoz.AVION);
+        putovanje.setSmestaj(Smestaj.HOTEL);
+        putovanje.setPonuda(Ponuda.POLU_PANSION);
+        putovanje.setKratakOpis("Opis putovanja");
+        putovanje.setNaziv("Obilazak Rima");
+
+        putovanje = controller.zapamtiPutovanje(putovanje);
+
+        Termin termin = new Termin();
+        termin.setCena(12000.00);
+        termin.setDatumPolaska(new Date(2023, Calendar.OCTOBER, 13));
+        termin.setDatumPovratka(new Date(2023, Calendar.OCTOBER, 20));
+        termin.setPutovanje(putovanje);
+        putovanje.setTermini(List.of(termin));
+
+        putovanje = controller.zapamtiPutovanje(putovanje);
+        termin.setTerminID(putovanje.getTermini().get(putovanje.getTermini().size() - 1).getTerminID());
+
+
+        Rezervacija rezervacija = new Rezervacija();
+        rezervacija.setPutnik(putnik);
+        rezervacija.setPutovanje(putovanje);
+        rezervacija.setTermin(termin);
+        rezervacija.setStatus(StatusRezervacije.AKTIVAN);
+        termin.setRezervacije(List.of(rezervacija));
+        putnik.getRezervacije().add(rezervacija);
+
+        controller.zapamtiRezervaciju(rezervacija);
+        controller.zapamtiPutnika(putnik);
+
+        controller.stornirajRezervaciju(rezervacija);
+
+        rezervacija = controller.pronadjiRezervacije(putnik, putovanje).get(0);
+
+        assertTrue(rezervacija.getStatus().equals(StatusRezervacije.NEAKTIVAN));
+
+        controller.obrisiPutnika(putnik);
+    }
+
+    @Test
+    void obradiRezervacijuExceptionNull() throws Exception {
+        assertThrows(Exception.class, () -> controller.obradiRezervaciju(null));
+    }
+
+    @Test
+    void obradiRezervacijuExceptionBezBroja(){
+        assertThrows(Exception.class, () -> controller.obradiRezervaciju(new Rezervacija()));
+    }
+
+    @Test
+    void obradiRezervacijuExceptionAktivan() throws Exception {
+        Putnik putnik = new Putnik();
+        putnik.setIme("Nikola");
+        putnik.setPrezime("Stojilkovic");
+        putnik.setPol(Pol.MUSKI);
+        putnik.setEmail("nikola.stojilkovic6@gmail.com");
+        putnik.setBrojTelefona("0601111111");
+        putnik.setSifra("nikola123");
+        putnik = controller.zapamtiPutnika(putnik);
+
+        Grad g1 = new Grad();
+        g1.setGradID(28);
+        Grad g2 = new Grad();
+        g2.setGradID(29);
+        Putovanje putovanje = new Putovanje();
+        putovanje.setPocetniGrad(g1);
+        putovanje.setKrajnjiGrad(g2);
+        putovanje.setPrevoz(Prevoz.AVION);
+        putovanje.setSmestaj(Smestaj.HOTEL);
+        putovanje.setPonuda(Ponuda.POLU_PANSION);
+        putovanje.setKratakOpis("Opis putovanja");
+        putovanje.setNaziv("Obilazak Rima");
+
+        putovanje = controller.zapamtiPutovanje(putovanje);
+
+        Termin termin = new Termin();
+        termin.setCena(12000.00);
+        termin.setDatumPolaska(new Date(2023, Calendar.OCTOBER, 13));
+        termin.setDatumPovratka(new Date(2023, Calendar.OCTOBER, 20));
+        termin.setPutovanje(putovanje);
+        putovanje.setTermini(List.of(termin));
+
+        putovanje = controller.zapamtiPutovanje(putovanje);
+        termin.setTerminID(putovanje.getTermini().get(putovanje.getTermini().size() - 1).getTerminID());
+
+
+        Rezervacija rezervacija = new Rezervacija();
+        rezervacija.setPutnik(putnik);
+        rezervacija.setPutovanje(putovanje);
+        rezervacija.setTermin(termin);
+        rezervacija.setStatus(StatusRezervacije.AKTIVAN);
+        termin.setRezervacije(List.of(rezervacija));
+        putnik.getRezervacije().add(rezervacija);
+
+        controller.zapamtiRezervaciju(rezervacija);
+        controller.zapamtiPutnika(putnik);
+
+        assertThrows(Exception.class, () -> controller.obradiRezervaciju(rezervacija));
+
+        controller.obrisiPutnika(putnik);
+    }
+
+    @Test
+    void obradiRezervaciju() throws Exception {
+        Putnik putnik = new Putnik();
+        putnik.setIme("Nikola");
+        putnik.setPrezime("Stojilkovic");
+        putnik.setPol(Pol.MUSKI);
+        putnik.setEmail("nikola.stojilkovic6@gmail.com");
+        putnik.setBrojTelefona("0601111111");
+        putnik.setSifra("nikola123");
+        putnik = controller.zapamtiPutnika(putnik);
+
+        Grad g1 = new Grad();
+        g1.setGradID(28);
+        Grad g2 = new Grad();
+        g2.setGradID(29);
+        Putovanje putovanje = new Putovanje();
+        putovanje.setPocetniGrad(g1);
+        putovanje.setKrajnjiGrad(g2);
+        putovanje.setPrevoz(Prevoz.AVION);
+        putovanje.setSmestaj(Smestaj.HOTEL);
+        putovanje.setPonuda(Ponuda.POLU_PANSION);
+        putovanje.setKratakOpis("Opis putovanja");
+        putovanje.setNaziv("Obilazak Rima");
+
+        putovanje = controller.zapamtiPutovanje(putovanje);
+
+        Termin termin = new Termin();
+        termin.setCena(12000.00);
+        termin.setDatumPolaska(new Date(2023, Calendar.OCTOBER, 13));
+        termin.setDatumPovratka(new Date(2023, Calendar.OCTOBER, 20));
+        termin.setPutovanje(putovanje);
+        putovanje.setTermini(List.of(termin));
+
+        putovanje = controller.zapamtiPutovanje(putovanje);
+        termin.setTerminID(putovanje.getTermini().get(putovanje.getTermini().size() - 1).getTerminID());
+
+
+        Rezervacija rezervacija = new Rezervacija();
+        rezervacija.setPutnik(putnik);
+        rezervacija.setPutovanje(putovanje);
+        rezervacija.setTermin(termin);
+        rezervacija.setStatus(StatusRezervacije.NEAKTIVAN);
+        termin.setRezervacije(List.of(rezervacija));
+        putnik.getRezervacije().add(rezervacija);
+
+        controller.zapamtiRezervaciju(rezervacija);
+        controller.zapamtiPutnika(putnik);
+
+        controller.obradiRezervaciju(rezervacija);
+
+        rezervacija = controller.pronadjiRezervacije(putnik, putovanje).get(0);
+
+        assertTrue(rezervacija.getStatus().equals(StatusRezervacije.AKTIVAN));
+
+        controller.obrisiPutnika(putnik);
+    }
+
 }
