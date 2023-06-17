@@ -130,7 +130,7 @@ public class RepositoryDBRezervacija implements DbConnectionRepository<Rezervaci
 
     public List<Rezervacija> getAll(Termin termin) throws Exception {
         if (termin.getTerminID() == 0) {
-            throw new Error("nepotpuni podaci termina");
+            throw new Exception("nepotpuni podaci termina");
         }
         List<Rezervacija> rezervacije = new ArrayList<>();
 
