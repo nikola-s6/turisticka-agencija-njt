@@ -69,7 +69,7 @@ public class RepositoryDBTermin implements DbConnectionRepository<Termin> {
             ps.executeUpdate();
             ResultSet rsKeys = ps.getGeneratedKeys();
             if (rsKeys.next()) {
-                termin.setTerminID(1);
+                termin.setTerminID(rsKeys.getInt(1));
             } else {
                 throw new Exception("id termina neuspesno generisan");
             }

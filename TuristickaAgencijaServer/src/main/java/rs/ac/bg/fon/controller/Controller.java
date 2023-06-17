@@ -128,8 +128,8 @@ public class Controller {
         if (grad == null) {
             throw new Exception("Za pretragu putoavnja potrebno je uneti grad");
         }
-        if(grad.getGradID() == 0){
-            throw new Exception("Za pretragu putoavnja potrebno je uneti grad koji ima gradID");
+        if(grad.getGradID() == 0 || grad.getNaziv() == null){
+            throw new Exception("Za pretragu putoavnja potrebno je uneti grad informacije o gradu");
         }
         List<Putovanje> putovanja = new ArrayList<>();
 
@@ -227,6 +227,9 @@ public class Controller {
     public List<Putovanje> ucitajPutovanjaPutnika(Putnik putnik) throws Exception {
         if (putnik == null) {
             throw new Exception("Za pretragu putoavnja potrebno je uneti putnika");
+        }
+        if(putnik.getPutnikID() == 0){
+            throw new Exception("Za pretragu putoavnja potrebno je uneti postojeceg putnika");
         }
         List<Putovanje> putovanja = new ArrayList<>();
 

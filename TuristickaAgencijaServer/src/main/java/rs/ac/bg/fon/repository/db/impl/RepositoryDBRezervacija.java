@@ -93,7 +93,7 @@ public class RepositoryDBRezervacija implements DbConnectionRepository<Rezervaci
             if (e.getMessage().contains("Duplicate entry")) {
                 throw new Exception("Putnik je vec rezervisao ovaj termin");
             }
-//            e.printStackTrace();
+            e.printStackTrace();
             throw new Exception("Sistem ne moze da zapamti rezervaciju");
         }
     }
