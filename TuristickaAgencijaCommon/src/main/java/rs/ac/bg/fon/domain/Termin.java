@@ -86,6 +86,9 @@ public class Termin implements Serializable {
      * @param terminID nova vrednost atributa terminID.
      */
     public void setTerminID(int terminID) {
+        if (terminID == 0){
+            throw new IllegalArgumentException("Id termina ne sme biti promenjen na 0");
+        }
         this.terminID = terminID;
     }
 
@@ -104,6 +107,9 @@ public class Termin implements Serializable {
      * @param cena nova vrednost atributa cena kao double.
      */
     public void setCena(Double cena) {
+        if (cena < 1000d){
+            throw new IllegalArgumentException("Cena putovanja u nekom terminu mora biti veca od 1000rsd");
+        }
         this.cena = cena;
     }
 
@@ -122,6 +128,9 @@ public class Termin implements Serializable {
      * @param datumPolaska nova vrednost atributa datumPolaska.
      */
     public void setDatumPolaska(Date datumPolaska) {
+        if (datumPolaska == null){
+            throw new NullPointerException("Datum polaska na putovanje ne sme biti null");
+        }
         this.datumPolaska = datumPolaska;
     }
 
@@ -140,6 +149,9 @@ public class Termin implements Serializable {
      * @param datumPovratka nova vrednost atributa datumPovratka.
      */
     public void setDatumPovratka(Date datumPovratka) {
+        if (datumPovratka == null){
+            throw new NullPointerException("Datum povratka sa putovanja ne sem biti null");
+        }
         this.datumPovratka = datumPovratka;
     }
 
@@ -158,6 +170,9 @@ public class Termin implements Serializable {
      * @param putovanje nova vrednost atributa putovanje kao objekat klase Putovanje.
      */
     public void setPutovanje(Putovanje putovanje) {
+        if(putovanje == null){
+            throw new NullPointerException("Putovanje ne sme biti null");
+        }
         this.putovanje = putovanje;
     }
 
@@ -176,6 +191,9 @@ public class Termin implements Serializable {
      * @param rezervacije kao nova lista svih rezervacija putovanja u odredjenom terminu.
      */
     public void setRezervacije(List<Rezervacija> rezervacije) {
+        if(rezervacije == null){
+            throw new NullPointerException("Rezervacije u nekom terminu ne smeju biti promenjene na null");
+        }
         this.rezervacije = rezervacije;
     }
 }
