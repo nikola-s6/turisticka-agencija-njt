@@ -29,15 +29,52 @@ class PutnikTest {
     }
 
     @Test
+    void setPutnikIDKadaJeNula(){
+        assertThrows(IllegalArgumentException.class, ()-> putnik.setPutnikID(0));
+    }
+
+    @Test
     void setPutnikID() {
         putnik.setPutnikID(1);
         assertEquals(1, putnik.getPutnikID());
     }
 
     @Test
+    void setImeNull(){
+        assertThrows(NullPointerException.class, ()->putnik.setIme(null));
+    }
+
+    @Test
+    void setImeDuzinaManjaOdJedan(){
+        assertThrows(IllegalArgumentException.class, ()-> putnik.setIme(""));
+        assertThrows(IllegalArgumentException.class, ()-> putnik.setIme("M"));
+    }
+
+    @Test
+    void setImeMaloSlovo(){
+        assertThrows(IllegalArgumentException.class, ()-> putnik.setIme("nikola"));
+    }
+
+    @Test
     void setIme() {
         putnik.setIme("Nikola");
         assertEquals("Nikola", putnik.getIme());
+    }
+
+    @Test
+    void setPrezimeNull(){
+        assertThrows(NullPointerException.class, ()->putnik.setPrezime(null));
+    }
+
+    @Test
+    void setPrezimeDuzinaManjaOdJedan(){
+        assertThrows(IllegalArgumentException.class, ()-> putnik.setPrezime(""));
+        assertThrows(IllegalArgumentException.class, ()-> putnik.setPrezime("M"));
+    }
+
+    @Test
+    void setPrezimeMaloSlovo(){
+        assertThrows(IllegalArgumentException.class, ()-> putnik.setPrezime("stojilkovic"));
     }
 
     @Test
@@ -53,9 +90,37 @@ class PutnikTest {
     }
 
     @Test
+    void setEmailNull(){
+        assertThrows(NullPointerException.class, () -> putnik.setEmail(null));
+    }
+
+    @Test
+    void setEmailPrazanString(){
+        assertThrows(IllegalArgumentException.class, () -> putnik.setEmail(""));
+    }
+
+    @Test
+    void setEmailGreske(){
+        assertThrows(IllegalArgumentException.class, () -> putnik.setEmail("nikola"));
+        assertThrows(IllegalArgumentException.class, () -> putnik.setEmail("nikola@"));
+        assertThrows(IllegalArgumentException.class, () -> putnik.setEmail("nikola@gmail"));
+        assertThrows(IllegalArgumentException.class, () -> putnik.setEmail("@gmail.com"));
+    }
+
+    @Test
     void setEmail() {
         putnik.setEmail("nikola.stojilkovic6@gmail.com");
         assertEquals("nikola.stojilkovic6@gmail.com", putnik.getEmail());
+    }
+
+    @Test
+    void setBrojTelefonaNull(){
+        assertThrows(NullPointerException.class, ()-> putnik.setBrojTelefona(null));
+    }
+
+    @Test
+    void setBrojTelefonaPrazanString(){
+        assertThrows(IllegalArgumentException.class, ()-> putnik.setBrojTelefona(""));
     }
 
     @Test
@@ -65,9 +130,25 @@ class PutnikTest {
     }
 
     @Test
+    void setSifraNull(){
+        assertThrows(NullPointerException.class, ()-> putnik.setSifra(null));
+    }
+
+    @Test
+    void setSifraNedovoljnaDuzina(){
+        assertThrows(IllegalArgumentException.class, ()-> putnik.setSifra("as"));
+        assertThrows(IllegalArgumentException.class, ()-> putnik.setSifra("asd"));
+    }
+
+    @Test
     void setSifra() {
         putnik.setSifra("sifra");
         assertEquals("sifra", putnik.getSifra());
+    }
+
+    @Test
+    void setRezervacijeNull(){
+        assertThrows(NullPointerException.class, ()->putnik.setRezervacije(null));
     }
 
     @Test
