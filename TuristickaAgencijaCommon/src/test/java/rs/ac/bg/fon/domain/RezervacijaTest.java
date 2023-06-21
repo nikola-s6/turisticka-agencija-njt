@@ -28,10 +28,20 @@ class RezervacijaTest {
     }
 
     @Test
+    void setPutnikNull(){
+        assertThrows(NullPointerException.class, ()-> rezervacija.setPutnik(null));
+    }
+
+    @Test
     void setPutnik() {
         Putnik putnik = new Putnik(1, "Nikola", "Stojilkovic", Pol.MUSKI, "nikola.stojilkovic6@gmail.com", "0601111111", "sifra");
         rezervacija.setPutnik(putnik);
         assertEquals(putnik, rezervacija.getPutnik());
+    }
+
+    @Test
+    void setPutovanjeNull(){
+        assertThrows(NullPointerException.class, ()-> rezervacija.setPutovanje(null));
     }
 
     @Test
@@ -44,16 +54,35 @@ class RezervacijaTest {
     }
 
     @Test
+    void setTerminNull(){
+        assertThrows(NullPointerException.class, ()-> rezervacija.setTermin(null));
+    }
+
+    @Test
     void setTermin() {
-        Termin termin = new Termin(1, 14_000.00, new Date(2023, Calendar.NOVEMBER, 9), new Date(2023, Calendar.NOVEMBER, 17), null);
+        Termin termin = new Termin();
+        termin.setTerminID(1);
+        termin.setCena(14_000.00);
+        termin.setDatumPolaska(new Date(2023, Calendar.NOVEMBER, 9));
+        termin.setDatumPovratka(new Date(2023, Calendar.NOVEMBER, 17));
         rezervacija.setTermin(termin);
         assertEquals(termin, rezervacija.getTermin());
+    }
+
+    @Test
+    void setBrojRezervacijeNula(){
+        assertThrows(IllegalArgumentException.class, ()-> rezervacija.setBrojRezervacije(0));
     }
 
     @Test
     void setBrojRezervacije() {
         rezervacija.setBrojRezervacije(1);
         assertEquals(1, rezervacija.getBrojRezervacije());
+    }
+
+    @Test
+    void setStatusNull(){
+        assertThrows(NullPointerException.class, ()-> rezervacija.setStatus(null));
     }
 
     @Test
