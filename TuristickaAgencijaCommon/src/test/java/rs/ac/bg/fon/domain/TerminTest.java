@@ -29,15 +29,30 @@ class TerminTest {
     }
 
     @Test
+    void setTerminIDNula(){
+        assertThrows(IllegalArgumentException.class, ()->termin.setTerminID(0));
+    }
+
+    @Test
     void setTerminID() {
         termin.setTerminID(1);
         assertEquals(1, termin.getTerminID());
     }
 
     @Test
+    void setCenaPremalaSuma(){
+        assertThrows(IllegalArgumentException.class, ()->termin.setCena(999.99));
+    }
+
+    @Test
     void setCena() {
-        termin.setCena(10_000.00);
-        assertEquals(10_000.00, termin.getCena());
+        termin.setCena(1000d);
+        assertEquals(1000d, termin.getCena());
+    }
+
+    @Test
+    void setDatumPolaskaNull(){
+        assertThrows(NullPointerException.class, ()->termin.setDatumPolaska(null));
     }
 
     @Test
@@ -48,10 +63,20 @@ class TerminTest {
     }
 
     @Test
+    void setDatumPovratkaNull(){
+        assertThrows(NullPointerException.class, ()->termin.setDatumPovratka(null));
+    }
+
+    @Test
     void setDatumPovratka() {
         Date datum = new Date(2023, Calendar.JUNE, 11);
         termin.setDatumPovratka(datum);
         assertEquals(datum, termin.getDatumPovratka());
+    }
+
+    @Test
+    void setPutovanjeNull(){
+        assertThrows(NullPointerException.class, ()-> termin.setPutovanje(null));
     }
 
     @Test
@@ -60,6 +85,11 @@ class TerminTest {
                 new Grad(2, "Prag", "Ceska"), Smestaj.HOTEL, Ponuda.POLU_PANSION, "Obilazak grada Praga i svih njegovih znamenitosti.");
         termin.setPutovanje(putovanje);
         assertEquals(putovanje, termin.getPutovanje());
+    }
+
+    @Test
+    void setRezeravcijeNull(){
+        assertThrows(NullPointerException.class, ()->termin.setRezervacije(null));
     }
 
     @Test
