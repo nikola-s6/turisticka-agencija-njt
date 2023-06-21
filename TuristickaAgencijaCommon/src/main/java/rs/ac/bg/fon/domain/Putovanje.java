@@ -114,6 +114,7 @@ public class Putovanje implements Serializable{
      * Postavlja vrednost atributa putovanjeID.
      *
      * @param putovanjeID nova vrednost atributa putovanjeID.
+     * @throws IllegalArgumentException ako je putovanjeID 0
      */
     public void setPutovanjeID(int putovanjeID) {
         if(putovanjeID == 0){
@@ -135,6 +136,8 @@ public class Putovanje implements Serializable{
      * Postavlja vrednost atributa naziv.
      *
      * @param naziv String vrednost naziva putovanja.
+     * @throws NullPointerException ako je naziv putovanja null
+     * @throws IllegalArgumentException ako je naziv putovanja prazan string
      */
     public void setNaziv(String naziv) {
         if(naziv == null){
@@ -159,6 +162,7 @@ public class Putovanje implements Serializable{
      * Postavlja pocetni grad putovanja.
      *
      * @param pocetniGrad Objekat klase Grad koji predstavlja pocetni grad putovanja.
+     * @throws NullPointerException ako je pocetni grad putovanja null
      */
     public void setPocetniGrad(Grad pocetniGrad) {
         if(pocetniGrad == null){
@@ -180,6 +184,7 @@ public class Putovanje implements Serializable{
      * Postavlja grad koji predstavlja krajnju destinaciju putovanja.
      *
      * @param krajnjiGrad Objekat klase Grad koji predstavlja krajnju destinaciju putovanja.
+     * @throws NullPointerException ako je krajnji grad putovanja null.
      */
     public void setKrajnjiGrad(Grad krajnjiGrad) {
         if(krajnjiGrad == null){
@@ -201,6 +206,7 @@ public class Putovanje implements Serializable{
      * Postavlja vrednost atributa prevoz.
      *
      * @param prevoz vrednost atributa prevoz tipa Prevoz.
+     * @throws NullPointerException ako je prevoz null
      */
     public void setPrevoz(Prevoz prevoz) {
         if(prevoz == null){
@@ -222,6 +228,7 @@ public class Putovanje implements Serializable{
      * Postavlja vrednost atributa smestaj.
      *
      * @param smestaj vrednost atributa smestaj tipa Smestaj.
+     * @throws NullPointerException ako je smestaj null
      */
     public void setSmestaj(Smestaj smestaj) {
         if (smestaj == null){
@@ -243,6 +250,7 @@ public class Putovanje implements Serializable{
      * Postavlja vrednost atributa ponuda.
      *
      * @param ponuda vrednost atributa ponuda tipa Ponuda.
+     * @throws NullPointerException ako je ponuda null.
      */
     public void setPonuda(Ponuda ponuda) {
         if (ponuda == null){
@@ -264,6 +272,8 @@ public class Putovanje implements Serializable{
      * Postavlja vrednost atributa karatakOpis.
      *
      * @param kratakOpis String vrednost za postavljanje opisa.
+     * @throws NullPointerException ako je kratakOpis null
+     * @throws IllegalArgumentException ukoliko je kratakOpis prazan string
      */
     public void setKratakOpis(String kratakOpis) {
         if(kratakOpis == null){
@@ -288,6 +298,7 @@ public class Putovanje implements Serializable{
      * Postavlja listu termina putovanja.
      *
      * @param termini lista sa terminima putovanja.
+     * @throws NullPointerException ukoliko je lista termina null
      */
     public void setTermini(List<Termin> termini) {
         if(termini == null){
@@ -309,6 +320,7 @@ public class Putovanje implements Serializable{
      * Postavlja listu usputnih gradova putovanja.
      *
      * @param usputniGradovi lista sa usputnim gradovima putovanja.
+     * @throws NullPointerException ako je lista usputnih gradova putovanja null
      */
     public void setUsputniGradovi(List<Usputni> usputniGradovi) {
         if (usputniGradovi == null){

@@ -74,6 +74,7 @@ public class Rezervacija implements Serializable{
      * Postavlja vrednost atributa putnik.
      *
      * @param putnik Objekat klase Putnik.
+     * @throws NullPointerException ukoliko je putnik null
      */
     public void setPutnik(Putnik putnik) {
         if (putnik == null){
@@ -95,6 +96,7 @@ public class Rezervacija implements Serializable{
      * Postavlja vrednost atributa putovanje.
      *
      * @param putovanje Objekat kalse putovanje.
+     * @throws NullPointerException ukoliko je putovanje null
      */
     public void setPutovanje(Putovanje putovanje) {
         if (putovanje == null){
@@ -116,6 +118,7 @@ public class Rezervacija implements Serializable{
      * Postavlja vrednost atributa Termin.
      *
      * @param termin Objekat kalse termin.
+     * @throws NullPointerException ukoliko je termin null
      */
     public void setTermin(Termin termin) {
         if (termin == null){
@@ -137,6 +140,7 @@ public class Rezervacija implements Serializable{
      * Postavlja vrednost atributa brojRezervacije.
      *
      * @param brojRezervacije Int vrednost broja rezervacije.
+     * @throws IllegalArgumentException ako je broj rezervacije 0
      */
     public void setBrojRezervacije(int brojRezervacije) {
         if(brojRezervacije == 0){
@@ -158,6 +162,7 @@ public class Rezervacija implements Serializable{
      * Postavlja vrednost atributa status.
      *
      * @param status Enum Status koji predstavlja status rezervacije.
+     * @throws NullPointerException ukoliko je status rezervacije null
      */
     public void setStatus(StatusRezervacije status) {
         if(status == null){
