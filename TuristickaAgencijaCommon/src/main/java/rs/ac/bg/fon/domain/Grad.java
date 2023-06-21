@@ -38,9 +38,9 @@ public class Grad implements Serializable {
      * @param drzava String vrednost za naziv drzave u kojoj se grad nalazi.
      */
     public Grad(int gradID, String naziv, String drzava) {
-        this.gradID = gradID;
-        this.naziv = naziv;
-        this.drzava = drzava;
+        setGradID(gradID);
+        setNaziv(naziv);
+        setDrzava(drzava);
     }
 
     /**

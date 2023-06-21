@@ -54,11 +54,11 @@ public class Rezervacija implements Serializable{
      * @param status Status rezervacije.
      */
     public Rezervacija(Putnik putnik, Putovanje putovanje, Termin termin, int brojRezervacije, StatusRezervacije status) {
-        this.putnik = putnik;
-        this.putovanje = putovanje;
-        this.termin = termin;
-        this.brojRezervacije = brojRezervacije;
-        this.status = status;
+        setPutnik(putnik);
+        setPutovanje(putovanje);
+        setTermin(termin);
+        setBrojRezervacije(brojRezervacije);
+        setStatus(status);
     }
 
     /**

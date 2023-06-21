@@ -63,11 +63,11 @@ public class Termin implements Serializable {
      * @param putovanje Putovanje za koje se kreira termin.
      */
     public Termin(int terminID, Double cena, Date datumPolaska, Date datumPovratka, Putovanje putovanje) {
-        this.terminID = terminID;
-        this.cena = cena;
-        this.datumPolaska = datumPolaska;
-        this.datumPovratka = datumPovratka;
-        this.putovanje = putovanje;
+        setTerminID(terminID);
+        setCena(cena);
+        setDatumPovratka(datumPolaska);
+        setDatumPovratka(datumPovratka);
+        setPutovanje(putovanje);
         this.rezervacije = new ArrayList<>();
     }
 

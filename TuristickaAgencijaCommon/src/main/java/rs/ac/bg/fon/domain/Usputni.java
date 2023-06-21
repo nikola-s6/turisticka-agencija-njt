@@ -38,9 +38,9 @@ public class Usputni implements Serializable {
      * @param redniBroj Int vrednost rednog broja putovanja.
      */
     public Usputni(Grad grad, Putovanje putovanje, int redniBroj) {
-        this.grad = grad;
-        this.putovanje = putovanje;
-        this.redniBroj = redniBroj;
+        setGrad(grad);
+        setPutovanje(putovanje);
+        setRedniBroj(redniBroj);
     }
 
     /**

@@ -90,13 +90,13 @@ public class Putovanje implements Serializable{
      * @param kratakOpis String vrednost opisa putovanja.
      */
     public Putovanje(int putovanjeID, String naziv, Grad pocetniGrad, Grad krajnjiGrad, Smestaj smestaj, Ponuda ponuda, String kratakOpis) {
-        this.putovanjeID = putovanjeID;
-        this.naziv = naziv;
-        this.pocetniGrad = pocetniGrad;
-        this.krajnjiGrad = krajnjiGrad;
-        this.smestaj = smestaj;
-        this.ponuda = ponuda;
-        this.kratakOpis = kratakOpis;
+        setPutovanjeID(putovanjeID);
+        setNaziv(naziv);
+        setPocetniGrad(pocetniGrad);
+        setKrajnjiGrad(krajnjiGrad);
+        setSmestaj(smestaj);
+        setPonuda(ponuda);
+        setKratakOpis(kratakOpis);
         this.termini = new ArrayList<>();
         this.usputniGradovi = new ArrayList<>();
     }

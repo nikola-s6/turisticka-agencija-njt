@@ -79,13 +79,13 @@ public class Putnik implements Serializable{
      * @param sifra String vredsnot sifre putnika.
      */
     public Putnik(int putnikID, String ime, String prezime, Pol pol, String email, String brojTelefona, String sifra) {
-        this.putnikID = putnikID;
-        this.ime = ime;
-        this.prezime = prezime;
-        this.pol = pol;
-        this.email = email;
-        this.brojTelefona = brojTelefona;
-        this.sifra = sifra;
+        setPutnikID(putnikID);
+        setIme(ime);
+        setPrezime(prezime);
+        setPol(pol);
+        setEmail(email);
+        setBrojTelefona(brojTelefona);
+        setSifra(sifra);
         this.rezervacije = new ArrayList<>();
     }
 
