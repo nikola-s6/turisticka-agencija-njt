@@ -84,6 +84,7 @@ public class Termin implements Serializable {
      * Postavlja vrednost atributa terminID.
      *
      * @param terminID nova vrednost atributa terminID.
+     * @throws IllegalArgumentException ako je terminID 0
      */
     public void setTerminID(int terminID) {
         if (terminID == 0){
@@ -105,6 +106,7 @@ public class Termin implements Serializable {
      * Postavlja vrednost atributa cena.
      *
      * @param cena nova vrednost atributa cena kao double.
+     * @throws IllegalArgumentException ako je cena manja od 1000rsd
      */
     public void setCena(Double cena) {
         if (cena < 1000d){
@@ -126,6 +128,7 @@ public class Termin implements Serializable {
      * Postavlja vrednost atributa datumPolaska.
      *
      * @param datumPolaska nova vrednost atributa datumPolaska.
+     * @throws NullPointerException ako je datumPolaska null
      */
     public void setDatumPolaska(Date datumPolaska) {
         if (datumPolaska == null){
@@ -147,6 +150,7 @@ public class Termin implements Serializable {
      * Postavlja vrednost atributa datumPovratka.
      *
      * @param datumPovratka nova vrednost atributa datumPovratka.
+     * @throws NullPointerException ako je datumPovratka null
      */
     public void setDatumPovratka(Date datumPovratka) {
         if (datumPovratka == null){
@@ -168,6 +172,7 @@ public class Termin implements Serializable {
      * Postavlja vrednost atributa putovanje.
      *
      * @param putovanje nova vrednost atributa putovanje kao objekat klase Putovanje.
+     * @throws NullPointerException ako je putovanje null
      */
     public void setPutovanje(Putovanje putovanje) {
         if(putovanje == null){
@@ -189,6 +194,7 @@ public class Termin implements Serializable {
      * Postavlja vrednost atributa rezervacije.
      *
      * @param rezervacije kao nova lista svih rezervacija putovanja u odredjenom terminu.
+     * @throws NullPointerException ako je lista rezervacija za neki termin null
      */
     public void setRezervacije(List<Rezervacija> rezervacije) {
         if(rezervacije == null){

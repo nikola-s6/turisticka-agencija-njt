@@ -56,6 +56,7 @@ public class Usputni implements Serializable {
      * Postavlja vrednost atributa grad.
      *
      * @param grad Objekat klase Grad koji predstavlja pocetni grad.
+     * @throws NullPointerException ako je grad null
      */
     public void setGrad(Grad grad) {
         if (grad == null){
@@ -77,6 +78,7 @@ public class Usputni implements Serializable {
      * Postavlja vrednost atributa putovanje.
      *
      * @param putovanje Objekat klase Putovanje koji vezuje putovanje za pocetni grad.
+     * @throws NullPointerException ako je putovanje null
      */
     public void setPutovanje(Putovanje putovanje) {
         if(putovanje == null){
@@ -98,6 +100,7 @@ public class Usputni implements Serializable {
      * Postavlja vrednost atributa redniBroj.
      *
      * @param redniBroj Int vrednost atributa vredniBroj.
+     * @throws IllegalArgumentException ako je redniBroj za neki usputni grad putovanja 0
      */
     public void setRedniBroj(int redniBroj) {
         if(redniBroj == 0){
