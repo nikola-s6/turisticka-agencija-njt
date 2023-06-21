@@ -28,15 +28,35 @@ class PutovanjeTest {
     }
 
     @Test
+    void setPutovanjeIDNula(){
+        assertThrows(IllegalArgumentException.class, ()-> putovanje.setPutovanjeID(0));
+    }
+
+    @Test
     void setPutovanjeID() {
         putovanje.setPutovanjeID(1);
         assertEquals(1, putovanje.getPutovanjeID());
     }
 
     @Test
+    void setNazivNull(){
+        assertThrows(NullPointerException.class, ()-> putovanje.setNaziv(null));
+    }
+
+    @Test
+    void setNazivPrazanString(){
+        assertThrows(IllegalArgumentException.class, ()-> putovanje.setNaziv(""));
+    }
+
+    @Test
     void setNaziv() {
         putovanje.setNaziv("Krstarenje mediteranom");
         assertEquals("Krstarenje mediteranom", putovanje.getNaziv());
+    }
+
+    @Test
+    void setPocetniGradNull(){
+        assertThrows(NullPointerException.class,()-> putovanje.setPocetniGrad(null));
     }
 
     @Test
@@ -47,10 +67,20 @@ class PutovanjeTest {
     }
 
     @Test
+    void setKrajnjiGradNull(){
+        assertThrows(NullPointerException.class, ()-> putovanje.setKrajnjiGrad(null));
+    }
+
+    @Test
     void setKrajnjiGrad() {
         Grad krajnji = new Grad(1, "Denver", "Kolorado");
         putovanje.setKrajnjiGrad(krajnji);
         assertEquals(krajnji, putovanje.getKrajnjiGrad());
+    }
+
+    @Test
+    void setPrevozNull(){
+        assertThrows(NullPointerException.class, ()->putovanje.setPrevoz(null));
     }
 
     @Test
@@ -60,9 +90,19 @@ class PutovanjeTest {
     }
 
     @Test
+    void setSmestajNull(){
+        assertThrows(NullPointerException.class, ()->putovanje.setSmestaj(null));
+    }
+
+    @Test
     void setSmestaj() {
         putovanje.setSmestaj(Smestaj.HOTEL);
         assertEquals(Smestaj.HOTEL, putovanje.getSmestaj());
+    }
+
+    @Test
+    void setPonudaNull(){
+        assertThrows(NullPointerException.class, ()->putovanje.setPonuda(null));
     }
 
     @Test
@@ -72,9 +112,24 @@ class PutovanjeTest {
     }
 
     @Test
+    void setKratakOpisNull(){
+        assertThrows(NullPointerException.class, ()-> putovanje.setKratakOpis(null));
+    }
+
+    @Test
+    void setKratakOpisPrazanString(){
+        assertThrows(IllegalArgumentException.class, ()->putovanje.setKratakOpis(""));
+    }
+
+    @Test
     void setKratakOpis() {
         putovanje.setKratakOpis("Kratak opis putovanja");
         assertEquals("Kratak opis putovanja", putovanje.getKratakOpis());
+    }
+
+    @Test
+    void setTerminiNull(){
+        assertThrows(NullPointerException.class, ()->putovanje.setTermini(null));
     }
 
     @Test
@@ -86,6 +141,11 @@ class PutovanjeTest {
         assertEquals(2, putovanje.getTermini().size());
         assertEquals(t1, putovanje.getTermini().get(0));
         assertEquals(t2, putovanje.getTermini().get(1));
+    }
+
+    @Test
+    void setUsputniGradoviNull(){
+        assertThrows(NullPointerException.class, ()->putovanje.setUsputniGradovi(null));
     }
 
     @Test
