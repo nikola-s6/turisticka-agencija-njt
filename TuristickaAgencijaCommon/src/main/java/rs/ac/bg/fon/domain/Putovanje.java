@@ -116,6 +116,9 @@ public class Putovanje implements Serializable{
      * @param putovanjeID nova vrednost atributa putovanjeID.
      */
     public void setPutovanjeID(int putovanjeID) {
+        if(putovanjeID == 0){
+            throw new IllegalArgumentException("Id putovanja ne sme biti promenjen na 0");
+        }
         this.putovanjeID = putovanjeID;
     }
 
@@ -134,6 +137,12 @@ public class Putovanje implements Serializable{
      * @param naziv String vrednost naziva putovanja.
      */
     public void setNaziv(String naziv) {
+        if(naziv == null){
+            throw new NullPointerException("Naziv putovanja ne sme biti null");
+        }
+        if(naziv.isEmpty()){
+            throw new IllegalArgumentException("Naziv putovanja mora biti prosledjen");
+        }
         this.naziv = naziv;
     }
 
@@ -152,6 +161,9 @@ public class Putovanje implements Serializable{
      * @param pocetniGrad Objekat klase Grad koji predstavlja pocetni grad putovanja.
      */
     public void setPocetniGrad(Grad pocetniGrad) {
+        if(pocetniGrad == null){
+            throw new NullPointerException("Pocetni grad putovanja ne sme biti null");
+        }
         this.pocetniGrad = pocetniGrad;
     }
 
@@ -170,6 +182,9 @@ public class Putovanje implements Serializable{
      * @param krajnjiGrad Objekat klase Grad koji predstavlja krajnju destinaciju putovanja.
      */
     public void setKrajnjiGrad(Grad krajnjiGrad) {
+        if(krajnjiGrad == null){
+            throw new NullPointerException("Krajnji grad putovanja ne sme biti null");
+        }
         this.krajnjiGrad = krajnjiGrad;
     }
 
@@ -188,6 +203,9 @@ public class Putovanje implements Serializable{
      * @param prevoz vrednost atributa prevoz tipa Prevoz.
      */
     public void setPrevoz(Prevoz prevoz) {
+        if(prevoz == null){
+            throw new NullPointerException("Prevoz ne sme biti promenjen na null");
+        }
         this.prevoz = prevoz;
     }
 
@@ -206,6 +224,9 @@ public class Putovanje implements Serializable{
      * @param smestaj vrednost atributa smestaj tipa Smestaj.
      */
     public void setSmestaj(Smestaj smestaj) {
+        if (smestaj == null){
+            throw new NullPointerException("Smestaj ne sme biti promenjen na null");
+        }
         this.smestaj = smestaj;
     }
 
@@ -224,6 +245,9 @@ public class Putovanje implements Serializable{
      * @param ponuda vrednost atributa ponuda tipa Ponuda.
      */
     public void setPonuda(Ponuda ponuda) {
+        if (ponuda == null){
+            throw new NullPointerException("Ponuda ne sme biti promenjena na null");
+        }
         this.ponuda = ponuda;
     }
 
@@ -242,6 +266,12 @@ public class Putovanje implements Serializable{
      * @param kratakOpis String vrednost za postavljanje opisa.
      */
     public void setKratakOpis(String kratakOpis) {
+        if(kratakOpis == null){
+            throw new NullPointerException("Opis putovanaj ne sme biti null");
+        }
+        if (kratakOpis.isEmpty()){
+            throw new IllegalArgumentException("Opis putovanja ne sme biti prazan");
+        }
         this.kratakOpis = kratakOpis;
     }
 
@@ -260,6 +290,9 @@ public class Putovanje implements Serializable{
      * @param termini lista sa terminima putovanja.
      */
     public void setTermini(List<Termin> termini) {
+        if(termini == null){
+            throw new NullPointerException("Termini ne smeju biti promenjeni na null");
+        }
         this.termini = termini;
     }
 
@@ -278,6 +311,9 @@ public class Putovanje implements Serializable{
      * @param usputniGradovi lista sa usputnim gradovima putovanja.
      */
     public void setUsputniGradovi(List<Usputni> usputniGradovi) {
+        if (usputniGradovi == null){
+            throw new NullPointerException("Usputni gradovi putovanja ne smeju biti promenjeni na null");
+        }
         this.usputniGradovi = usputniGradovi;
     }
 }
