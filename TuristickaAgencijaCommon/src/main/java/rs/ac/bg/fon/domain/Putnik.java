@@ -103,6 +103,7 @@ public class Putnik implements Serializable{
      * Postavlja vrednost atributa putnikID.
      *
      * @param putnikID nova vrednost atributa putnikID.
+     * @throws IllegalArgumentException ukoliko je putnikID 0
      */
     public void setPutnikID(int putnikID) {
         if(putnikID == 0){
@@ -124,6 +125,9 @@ public class Putnik implements Serializable{
      * Posatavlja vrednost atributa ime.
      *
      * @param ime String vrednost za ime putnika.
+     * @throws NullPointerException ukoliko je ime null
+     * @throws IllegalArgumentException ukolike duzina imena nije duza od jednog karaktera
+     * ili ukoliko ime ne pocinje velikim slovom
      */
     public void setIme(String ime) {
         if(ime == null){
@@ -151,6 +155,9 @@ public class Putnik implements Serializable{
      * Postavlja vrednost atributa prezime.
      *
      * @param prezime String vrednost za prezime putnika.
+     * @throws NullPointerException ukoliko je prezime null
+     * @throws IllegalArgumentException ukoliko duzina prezimena nije duza od jednog karaktera ili
+     * ukoliko prezime ne pocinje velikim slovom
      */
     public void setPrezime(String prezime) {
         if(prezime == null){
@@ -195,6 +202,8 @@ public class Putnik implements Serializable{
      * Postavlja vrednost atributa email.
      *
      * @param email nova vrednost atributa email kao String.
+     * @throws NullPointerException ukoliko je email null
+     * @throws IllegalArgumentException ukoliko je prezime prazan string ili ukoliko string nije u email obliku.
      */
     public void setEmail(String email) {
         if(email == null){
@@ -222,6 +231,8 @@ public class Putnik implements Serializable{
      * Postavlja vrednost atributa brojTelefona.
      *
      * @param brojTelefona String vrednost broja telefona.
+     * @throws NullPointerException ukoliko je brojTelefona null
+     * @throws IllegalArgumentException ukoliko je brojTelefona prazan string
      */
     public void setBrojTelefona(String brojTelefona) {
         if(brojTelefona == null){
@@ -247,6 +258,8 @@ public class Putnik implements Serializable{
      * Postavlja vrednost atributa sifra.
      *
      * @param sifra nova vrednost atributa sifra.
+     * @throws NullPointerException ukoliko je sifra null
+     * @throws IllegalArgumentException ukoliko je sifra 3 karatkera ili kraca
      */
     public void setSifra(String sifra) {
         if(sifra == null){
@@ -270,6 +283,7 @@ public class Putnik implements Serializable{
      * Postavlja listu sa rezervacijama putnika.
      *
      * @param rezervacije lista sa rezervacijama putnika.
+     * @throws NullPointerException ukoliko je lista rezervacija null
      */
     public void setRezervacije(List<Rezervacija> rezervacije) {
         if(rezervacije == null){

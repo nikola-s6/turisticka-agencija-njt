@@ -56,6 +56,7 @@ public class Grad implements Serializable {
      * Postavlja vrednost atributa gradID.
      *
      * @param gradID nova vrednost atributa gradID.
+     * @throws IllegalArgumentException ukoliko je gradID 0
      */
     public void setGradID(int gradID){
         if(gradID == 0){
@@ -77,6 +78,8 @@ public class Grad implements Serializable {
      * Postavlja vrednost atributa naziv koji predstavlja naziv grada.
      *
      * @param naziv nova vrednost atributa naziv.
+     * @throws  NullPointerException ukoliko je naziv grada null
+     * @throws IllegalArgumentException ukoliko je naziv prazan string ili ako naziv grada ne pocinje velikim slovom
      */
     public void setNaziv(String naziv) {
         if(naziv == null){
@@ -104,6 +107,8 @@ public class Grad implements Serializable {
      * Postavlja vrednost atributa drzava koji predstavlja naziv drzave u kojoj se grad nalazi.
      *
      * @param drzava nova vrednost atributa drzava.
+     * @throws NullPointerException ukoliko je drzava null
+     * @throws IllegalArgumentException ukoliko je ime drzave prazan string ili ukoliko ne pocinje velikim slovom
      */
     public void setDrzava(String drzava) {
         if(drzava == null){
