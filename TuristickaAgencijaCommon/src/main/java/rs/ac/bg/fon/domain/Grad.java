@@ -37,7 +37,7 @@ public class Grad implements Serializable {
      * @param naziv String vrednost naziva grada.
      * @param drzava String vrednost za naziv drzave u kojoj se grad nalazi.
      */
-    public Grad(int gradID, String naziv, String drzava) throws Exception {
+    public Grad(int gradID, String naziv, String drzava){
         setGradID(gradID);
         setNaziv(naziv);
         setDrzava(drzava);
@@ -57,7 +57,7 @@ public class Grad implements Serializable {
      *
      * @param gradID nova vrednost atributa gradID.
      */
-    public void setGradID(int gradID) throws Exception {
+    public void setGradID(int gradID){
         if(gradID == 0){
             throw new IllegalArgumentException("Id grada ne sme da se postavi na 0");
         }
@@ -79,7 +79,10 @@ public class Grad implements Serializable {
      * @param naziv nova vrednost atributa naziv.
      */
     public void setNaziv(String naziv) {
-        if(naziv == null || naziv.equals("")){
+        if(naziv == null){
+            throw new NullPointerException("Naziv grada ne sme biti null");
+        }
+        if(naziv.isEmpty()){
             throw new IllegalArgumentException("Naziv grada mora biti prosledjen!");
         }
         if(!Character.isUpperCase(naziv.charAt(0))){
@@ -103,7 +106,10 @@ public class Grad implements Serializable {
      * @param drzava nova vrednost atributa drzava.
      */
     public void setDrzava(String drzava) {
-        if(drzava == null || drzava.equals("")){
+        if(drzava == null){
+            throw new NullPointerException("Drzava ne sme biti null");
+        }
+        if(drzava.isEmpty()){
             throw new IllegalArgumentException("Naziv drzave mora biti prosledjen!");
         }
         if(!Character.isUpperCase(drzava.charAt(0))){

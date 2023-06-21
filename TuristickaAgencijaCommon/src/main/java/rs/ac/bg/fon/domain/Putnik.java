@@ -6,6 +6,7 @@ import rs.ac.bg.fon.domain.util.Pol;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Predstavlja putnika sa njegovim osnovnim licnim podacima, kao i listom njegovih rezervacija.
@@ -104,6 +105,9 @@ public class Putnik implements Serializable{
      * @param putnikID nova vrednost atributa putnikID.
      */
     public void setPutnikID(int putnikID) {
+        if(putnikID == 0){
+            throw new IllegalArgumentException("Id putnika ne sme biti promenjen na 0");
+        }
         this.putnikID = putnikID;
     }
 
@@ -122,6 +126,15 @@ public class Putnik implements Serializable{
      * @param ime String vrednost za ime putnika.
      */
     public void setIme(String ime) {
+        if(ime == null){
+            throw new NullPointerException("Ime ne sme bit null");
+        }
+        if(!(ime.length() > 1)){
+            throw new IllegalArgumentException("Ime mora biti duze od jednog karaktera");
+        }
+        if(!Character.isUpperCase(ime.charAt(0))){
+            throw new IllegalArgumentException("Ime mora pocinjati velikim slovom");
+        }
         this.ime = ime;
     }
 
@@ -140,6 +153,15 @@ public class Putnik implements Serializable{
      * @param prezime String vrednost za prezime putnika.
      */
     public void setPrezime(String prezime) {
+        if(prezime == null){
+            throw new NullPointerException("Prezime ne sme biti null");
+        }
+        if(!(prezime.length() > 1)){
+            throw new IllegalArgumentException("Prezime mora biti duze od jednog karaktera");
+        }
+        if(!Character.isUpperCase(prezime.charAt(0))){
+            throw new IllegalArgumentException("Prezime mora pocinjati velikim slovom");
+        }
         this.prezime = prezime;
     }
 
@@ -175,6 +197,15 @@ public class Putnik implements Serializable{
      * @param email nova vrednost atributa email kao String.
      */
     public void setEmail(String email) {
+        if(email == null){
+            throw new NullPointerException("Email ne sme biti null");
+        }
+        if(email.isEmpty()){
+            throw new IllegalArgumentException("Email mora biti prosledjen");
+        }
+        if(!Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$").matcher(email).matches()){
+            throw new IllegalArgumentException("Email mora ima biti u odgovarajucoj formi");
+        }
         this.email = email;
     }
 
@@ -193,6 +224,12 @@ public class Putnik implements Serializable{
      * @param brojTelefona String vrednost broja telefona.
      */
     public void setBrojTelefona(String brojTelefona) {
+        if(brojTelefona == null){
+            throw new NullPointerException("Broj telefona ne sme biti null");
+        }
+        if(brojTelefona.isEmpty()){
+            throw new IllegalArgumentException("Broj telefona mora biti prosledjen");
+        }
         this.brojTelefona = brojTelefona;
     }
 
@@ -212,6 +249,12 @@ public class Putnik implements Serializable{
      * @param sifra nova vrednost atributa sifra.
      */
     public void setSifra(String sifra) {
+        if(sifra == null){
+            throw new NullPointerException("Sifra ne sme biti null");
+        }
+        if(!(sifra.length() > 3)){
+            throw new IllegalArgumentException("Sifra mora biti duza od 3 karaktera");
+        }
         this.sifra = sifra;
     }
 
@@ -229,6 +272,9 @@ public class Putnik implements Serializable{
      * @param rezervacije lista sa rezervacijama putnika.
      */
     public void setRezervacije(List<Rezervacija> rezervacije) {
+        if(rezervacije == null){
+            throw new NullPointerException("Rezervacije ne smeju biti promenjene na null");
+        }
         this.rezervacije = rezervacije;
     }
 
