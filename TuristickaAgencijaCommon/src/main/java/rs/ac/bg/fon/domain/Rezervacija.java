@@ -76,6 +76,9 @@ public class Rezervacija implements Serializable{
      * @param putnik Objekat klase Putnik.
      */
     public void setPutnik(Putnik putnik) {
+        if (putnik == null){
+            throw new NullPointerException("Putnik ne sme biti null");
+        }
         this.putnik = putnik;
     }
 
@@ -94,6 +97,9 @@ public class Rezervacija implements Serializable{
      * @param putovanje Objekat kalse putovanje.
      */
     public void setPutovanje(Putovanje putovanje) {
+        if (putovanje == null){
+            throw new NullPointerException("Putovanje ne sme biti null");
+        }
         this.putovanje = putovanje;
     }
 
@@ -112,6 +118,9 @@ public class Rezervacija implements Serializable{
      * @param termin Objekat kalse termin.
      */
     public void setTermin(Termin termin) {
+        if (termin == null){
+            throw new NullPointerException("Termin ne sme biti null");
+        }
         this.termin = termin;
     }
 
@@ -130,6 +139,9 @@ public class Rezervacija implements Serializable{
      * @param brojRezervacije Int vrednost broja rezervacije.
      */
     public void setBrojRezervacije(int brojRezervacije) {
+        if(brojRezervacije == 0){
+            throw new IllegalArgumentException("Broj rezervacije ne sme biti promenjen na 0");
+        }
         this.brojRezervacije = brojRezervacije;
     }
 
@@ -148,6 +160,9 @@ public class Rezervacija implements Serializable{
      * @param status Enum Status koji predstavlja status rezervacije.
      */
     public void setStatus(StatusRezervacije status) {
+        if(status == null){
+            throw new NullPointerException("Status rezervacije ne sme biti null");
+        }
         this.status = status;
     }
 }
