@@ -1,5 +1,6 @@
 package rs.ac.bg.fon.domain;
 
+import com.google.gson.annotations.Expose;
 import rs.ac.bg.fon.domain.util.Ponuda;
 import rs.ac.bg.fon.domain.util.Prevoz;
 import rs.ac.bg.fon.domain.util.Smestaj;
@@ -19,41 +20,49 @@ public class Putovanje implements Serializable{
     /**
      * ID putovanja kao int.
      */
+    @Expose
     private int putovanjeID;
 
     /**
      * Naziv putovanja kao String.
      */
+    @Expose
     private String naziv;
 
     /**
      * Objekat klase Grad koji predstavlja grad odakle putovanje krece.
      */
+    @Expose
     private Grad pocetniGrad;
 
     /**
      * Objekat klase Grad koji predstavlja zavrsnu destinaciju putovanja.
      */
+    @Expose
     private Grad krajnjiGrad;
 
     /**
      * Nacin prevoza putnika tokom putovanja.
      */
+    @Expose
     private Prevoz prevoz;
 
     /**
      * Smestaj putnika tokom putovanja.
      */
+    @Expose
     private Smestaj smestaj;
 
     /**
      * Ponuda pansiona sadrzanog u putovanju.
      */
+    @Expose
     private Ponuda ponuda;
 
     /**
      * Kratak opis putovanja kao String.
      */
+    @Expose
     private String kratakOpis;
 
     /**
@@ -66,6 +75,7 @@ public class Putovanje implements Serializable{
      * Lista usputnih gradova koji se obilaze tokom putovanja od pocetne do krajnje destinacije (grada).
      * Lista ne moze biti null, ali moze biti prazna.
      */
+    @Expose
     private List<Usputni> usputniGradovi;
 
     /**

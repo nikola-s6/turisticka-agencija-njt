@@ -1,5 +1,7 @@
 package rs.ac.bg.fon.domain;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 
 /**
@@ -13,6 +15,7 @@ public class Usputni implements Serializable {
     /**
      * Objekat klase grad koji predstavlja usputni grad putovanja.
      */
+    @Expose
     private Grad grad;
 
     /**
@@ -23,6 +26,7 @@ public class Usputni implements Serializable {
     /**
      * Redni broj koji oznacava koji je po redu odgovarajuci grad u nizu usputnih gradova.
      */
+    @Expose
     private int redniBroj;
 
     /**

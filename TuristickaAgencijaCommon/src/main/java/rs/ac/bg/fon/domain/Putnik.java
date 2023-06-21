@@ -1,6 +1,7 @@
 package rs.ac.bg.fon.domain;
 
 
+import com.google.gson.annotations.Expose;
 import rs.ac.bg.fon.domain.util.Pol;
 
 import java.io.Serializable;
@@ -19,30 +20,36 @@ public class Putnik implements Serializable{
     /**
      * ID putnika kao int.
      */
+    @Expose
     private int putnikID;
     /**
      * Ime putnika kao String.
      */
+    @Expose
     private String ime;
 
     /**
      * Prezime putnika kao String.
      */
+    @Expose
     private String prezime;
 
     /**
      * Pol putnika kao tip Pol.
      */
+    @Expose
     private Pol pol;
 
     /**
      * Email putnika kao String.
      */
+    @Expose
     private String email;
 
     /**
      * Broj telefona kao String.
      */
+    @Expose
     private String brojTelefona;
 
     /**

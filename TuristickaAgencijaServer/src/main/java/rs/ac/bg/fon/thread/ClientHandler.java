@@ -25,7 +25,7 @@ public class ClientHandler extends Thread {
         this.socket = socket;
         sender = new Sender(socket);
         receiver = new Receiver(socket);
-        this.gson = new GsonBuilder().setPrettyPrinting().create();
+        this.gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
     }
 
     @Override

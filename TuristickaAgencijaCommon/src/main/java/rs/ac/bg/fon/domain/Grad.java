@@ -1,5 +1,7 @@
 package rs.ac.bg.fon.domain;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 
 /**
@@ -12,16 +14,19 @@ public class Grad implements Serializable {
     /**
      * ID grada kao int.
      */
+    @Expose
     private int gradID;
 
     /**
      * Naziv grada kao String.
      */
+    @Expose
     private String naziv;
 
     /**
      * Drzava u kojoj se grad nalazi kao String vrednost.
      */
+    @Expose
     private String drzava;
 
     /**

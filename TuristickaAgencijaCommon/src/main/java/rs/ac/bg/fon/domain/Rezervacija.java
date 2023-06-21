@@ -1,6 +1,7 @@
 package rs.ac.bg.fon.domain;
 
 
+import com.google.gson.annotations.Expose;
 import rs.ac.bg.fon.domain.util.StatusRezervacije;
 
 import java.io.Serializable;
@@ -16,26 +17,31 @@ public class Rezervacija implements Serializable{
     /**
      * Objekat klase Putnik koji predstavlja putnika koji je izvrsio rezervaciju.
      */
+    @Expose
     private Putnik putnik;
 
     /**
      * Objekat klase Putovanje koji predstavlja putovanje za koje je rezervacija izvrsena.
      */
+    @Expose
     private Putovanje putovanje;
 
     /**
      * Objekat klase Termin koji predstavlja za koji termin putovanja je rezervacija izvrsena.
      */
+    @Expose
     private Termin termin;
 
     /**
      * Broj rezervacije kao int.
      */
+    @Expose
     private int brojRezervacije;
 
     /**
      * Status rezervacije koji pokazuje da li je rezervacija aktivna.
      */
+    @Expose
     private StatusRezervacije status;
 
     /**

@@ -1,5 +1,7 @@
 package rs.ac.bg.fon.domain;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,21 +18,25 @@ public class Termin implements Serializable {
     /**
      * ID termina kao int vrednost.
      */
+    @Expose
     private int terminID;
 
     /**
      * Cena putovanja u terminu kao double vrednost.
      */
+    @Expose
     private Double cena;
 
     /**
      * Datum polaska putnika na putovnje.
      */
+    @Expose
     private Date datumPolaska;
 
     /**
      * Datum povratka putnika sa putovanja.
      */
+    @Expose
     private Date datumPovratka;
 
     /**
